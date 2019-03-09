@@ -1,0 +1,51 @@
+## docker-compose configuration for cryptpad
+## 
+## name this file docker-compose.yml and edit the following values:
+## 
+## your.cryptpad.domain
+## 
+
+
+version: '2'
+services:
+
+  cryptpad:
+    build:
+      context: .
+      args:
+        - VERSION=latest
+    image: "xwiki/cryptpad:latest"
+    hostname: cryptpad
+
+    labels:
+      #################################
+      ## Edit the value below     
+      #################################
+      - traefik.frontend.rule=Host:your.cryptpad.domain
+      #################################
+      - traefik.port=3000
+      - traefik.frontend.passHostHeader=true
+      - "traefik.frontend.entryPoints=http,https"
+    environment:
+      - USE_SSL=false
+      - STORAGE=./storage/file
+      - LOG_TO_STDOUT=true
+
+    restart: always
+    volumes:
+      - ./data/files:/cryptpad/datastore:rw
+      - ./data/customize:/cryptpad/customize:rw
+      - ./data/pins:/cryptpad/pins:rw
+      - ./data/blob:/cryptpad/blob:rw
+      - ./data/blobstage:/cryptpad/blobstage:rw
+      - ./data/tasks:/cryptpad/tasks:rw
+      - ./data/block:/cryptpad/block:rw
+    networks:
+      - traefik_network
+
+
+networks:
+  traefik_network:
+    external:
+      name: traefik_default
+
