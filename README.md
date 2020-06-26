@@ -12,18 +12,7 @@ cryptpad project: hhttps://cryptpad.fr/
 Install
 -------
 
-Build docker image in a separate source directory
-
-```
-# clone cryptpad source
-git clone https://github.com/xwiki-labs/cryptpad.git cryptpad-source
-cd cryptpad-source
-
-# build the docker image
-docker build -t xwiki/cryptpad .
-```
-
-Clone and edit this repository else where, and start the image:
+Clone and edit repository:
 
 ```
 # clone repository
@@ -39,6 +28,19 @@ Edit docker-compose.yml and change the following value:
 * `your.cryptpad.domain` the domain name under which this cryptpad will be available
 
 
+In order to run cryptpad you need to configure the 'config.js' file in `data/config/config.js`. 
+
+You need to set at least the following configuration:
+
+* adminEmail: "your@email"
+* httpSafeOrigin: "https://your.domain",
+* httpAddress: '::',
+
+Optionally change:
+
+* defaultStorageLimit: 1024 * 1024 * 1024,
+* blockDailyCheck: true,
+* removeDonateButton: true,
 
 
 Usage
@@ -51,20 +53,5 @@ docker-compose up -d
 # stop nextcloud
 docker-compose down
 ```
-
-
-Udpate
-------
-
-Update the cryptpad source git repository and build a new docker image.
-
-```
-# move to the source git repository and get the latest source
-git pull
-
-# build a new docker image
-docker build -t xwiki/cryptpad .
-```
-
 
 
