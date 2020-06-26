@@ -10,11 +10,7 @@ version: '2'
 services:
 
   cryptpad:
-    build:
-      context: .
-      args:
-        - VERSION=latest
-    image: "xwiki/cryptpad:latest"
+    image: "cryptpad/cryptpad:latest"
     hostname: cryptpad
 
     labels:
@@ -40,6 +36,7 @@ services:
       - ./data/blobstage:/cryptpad/blobstage:rw
       - ./data/tasks:/cryptpad/tasks:rw
       - ./data/block:/cryptpad/block:rw
+      - ./data/config:/cryptpad/config:rw
     networks:
       - traefik_network
 
