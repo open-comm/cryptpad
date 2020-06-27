@@ -20,27 +20,19 @@ git clone git@gitlab.wachter-jud.net:docker/cryptpad.git
 
 # copy and edit the sample configuration file
 cd cryptpad
-cp docker-compose.yml.example docker-compose.yml
+cp docker-compose.yml.sample docker-compose.yml
+cp config.js.sample config.js
 ```
 
-Edit docker-compose.yml and change the following value:
+Edit `docker-compose.yml` and change the following value:
 
 * `your.cryptpad.domain` the domain name under which this cryptpad will be available
 
 
-In order to run cryptpad you need to configure the 'config.js' file in `data/config/config.js`. 
-
-You need to set at least the following configuration:
+Optionally edit `config.js` and change the following values:
 
 * adminEmail: "your@email"
 * httpSafeOrigin: "https://your.domain",
-* httpAddress: '::',
-
-Optionally change:
-
-* defaultStorageLimit: 1024 * 1024 * 1024,
-* blockDailyCheck: true,
-* removeDonateButton: true,
 
 
 Usage
