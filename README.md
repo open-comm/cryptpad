@@ -1,5 +1,4 @@
-Cryptpad Configuration
-=======================
+# Cryptpad Configuration
 
 Ready to use cryptpad docker-compose configuration for a traefik web proxy.
 
@@ -9,24 +8,27 @@ kanban boards, todo lists and polls.
 cryptpad project: hhttps://cryptpad.fr/
 
 
-Install
--------
+## Install
 
 Clone and edit repository:
 
 ```
 # clone repository
-git clone git@gitlab.wachter-jud.net:docker/cryptpad.git
+git clone https://git.open-communication.net/open-communication/docker/cryptpad.git
 
-# copy and edit the sample configuration file
+# move into project folder
 cd cryptpad
-cp docker-compose.yml.sample docker-compose.yml
+
+# copy and edit the sample configuration files
+cp sample.env .env
 cp config.js.sample config.js
 ```
 
-Edit `docker-compose.yml` and change the following value:
+Edit environment configuration file `.env` and change the following values:
 
-* `your.cryptpad.domain` the domain name under which this cryptpad will be available
+* `my.domain.com` the domain name under which this cryptpad will be available
+* `Choose_A_Unique_Name` choose a name unique name for your cryptpad router.
+  The name must not include spaces or dots.
 
 
 Optionally edit `config.js` and change the following values:
@@ -35,15 +37,16 @@ Optionally edit `config.js` and change the following values:
 * httpSafeOrigin: "https://your.domain",
 
 
-Usage
------
+## Usage
 
 ```
-# start nextcloud
+# start cryptpad
 docker-compose up -d
 
-# stop nextcloud
+# stop cryptpad
 docker-compose down
-```
 
+# upgrade container
+docker-compose pull
+```
 

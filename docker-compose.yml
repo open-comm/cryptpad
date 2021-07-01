@@ -1,27 +1,16 @@
-## docker-compose configuration for cryptpad
-## 
-## name this file docker-compose.yml and edit the following values:
-## 
-## your.cryptpad.domain
-## 
-
-
-version: '2'
+version: '3'
 services:
 
   cryptpad:
-    image: "cryptpad/cryptpad:latest"
+    image: "promasu/cryptpad:latest"
     hostname: cryptpad
 
     labels:
-      #################################
-      ## Edit the value below     
-      #################################
-      - traefik.frontend.rule=Host:your.cryptpad.domain
-      #################################
+      - "traefik.enable=true"
       - traefik.port=3000
-      - traefik.frontend.passHostHeader=true
-      - "traefik.frontend.entryPoints=http,https"
+      - "traefik.http.routers.${ROUTERNAME}.rule=Host(${DOMAIN})"
+      - "traefik.http.routers.${ROUTERNAME}.entrypoints=websecure"
+      - "traefik.http.routers.${ROUTERNAME}.tls.certresolver=myresolver"
     environment:
       - USE_SSL=false
       - STORAGE=./storage/file
