@@ -5,7 +5,7 @@ Ready to use cryptpad docker-compose configuration for a traefik web proxy.
 Cryptpad is an encrypted collaborative editor for rich text, markdown,
 kanban boards, todo lists and polls.
 
-cryptpad project: hhttps://cryptpad.fr/
+cryptpad project: https://cryptpad.fr/
 
 
 ## Install
